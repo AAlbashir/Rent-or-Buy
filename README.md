@@ -15,3 +15,6 @@ Challenges
 	3. Team Composition Challenge:
 		* Limited Programming Skills: Neither team member has advanced programming expertise, which could hinder progress in implementing technical features.
 
+Communication Plan
+	To ensure effective teamwork and communication, we plan to utilize Slack for daily communication and progress updates. For deeper collaboration and planning, we will schedule regular Zoom meetings, accomodating both time zones. To manage tasks and deadlines, we will use a shared project management tool (e.g., Github). We also aim to divide the work based on individual strengths and interests, with regular check-ins to provide support where needed.
+
