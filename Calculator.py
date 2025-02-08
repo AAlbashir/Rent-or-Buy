@@ -1,4 +1,4 @@
-def compare_rent_vs_buy(length_of_stay, monthly_rent, home_price, down_payment, mortgage_rate, property_tax_rate=1.2, maintenance_rate=1.0):
+def compare_rent_vs_buy(length_of_stay, monthly_rent, home_price, down_payment, mortgage_rate, investment_interest_rate, property_tax_rate=1.2, maintenance_rate=1.0): # Added new parameter...JMR
     """
     Compare renting vs. buying a home.
     
@@ -9,12 +9,14 @@ def compare_rent_vs_buy(length_of_stay, monthly_rent, home_price, down_payment, 
     :param mortgage_rate: Annual mortgage interest rate (as percentage)
     :param property_tax_rate: Annual property tax rate (default 1.2%)
     :param maintenance_rate: Annual maintenance cost rate (default 1.0%)
+    :param investment_interest_rate: Annual investment interest (as percentage)  ...Added parameter...JMR
     :return: Total costs for renting and buying, and recommendation
     """
     import numpy as np
     
     # Renting total cost
-    total_rent_cost = monthly_rent * 12 * length_of_stay
+    investment = (down_payment * (investment_interest_rate / 100)) * length_of_stay # Added a financial return estimate for investing the down payment amount...JMR
+    total_rent_cost = (monthly_rent * 12 * length_of_stay) - investment # Added investment calculation to total_rent_cost...JMR
     
     # Buying costs
     loan_amount = home_price - down_payment
@@ -50,8 +52,10 @@ inputs = {
     "monthly_rent": 2000,  # dollars
     "home_price": 500000,  # dollars
     "down_payment": 100000,  # dollars
-    "mortgage_rate": 5.0  # percent
-}
+    "mortgage_rate": 5.0,  # percent
+    "investment_interest_rate": 4.0 # percent ...Added new input...JMR
+    }
 
 result = compare_rent_vs_buy(**inputs)
 print(result)
+
