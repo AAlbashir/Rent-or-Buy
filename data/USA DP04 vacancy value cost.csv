@@ -1,5 +1,11 @@
-﻿Label (Grouping),"Anchorage, AK Metro Area!!Estimate","Anchorage, AK Metro Area!!Margin of Error","Colorado Springs, CO Metro Area!!Estimate","Colorado Springs, CO Metro Area!!Margin of Error","Houston-Pasadena-The Woodlands, TX Metro Area!!Estimate","Houston-Pasadena-The Woodlands, TX Metro Area!!Margin of Error","Kansas City, MO-KS Metro Area!!Estimate","Kansas City, MO-KS Metro Area!!Margin of Error","Los Angeles-Long Beach-Anaheim, CA Metro Area!!Estimate","Los Angeles-Long Beach-Anaheim, CA Metro Area!!Margin of Error","New York-Newark-Jersey City, NY-NJ Metro Area!!Estimate","New York-Newark-Jersey City, NY-NJ Metro Area!!Margin of Error","Omaha, NE-IA Metro Area!!Estimate","Omaha, NE-IA Metro Area!!Margin of Error","Orlando-Kissimmee-Sanford, FL Metro Area!!Estimate","Orlando-Kissimmee-Sanford, FL Metro Area!!Margin of Error","Tucson, AZ Metro Area!!Estimate","Tucson, AZ Metro Area!!Margin of Error","Tulsa, OK Metro Area!!Estimate","Tulsa, OK Metro Area!!Margin of Error"
-Vacant housing units,"23,179","±2,604","15,728","±3,456","247,018","±8,751","63,030","±4,914","285,894","±10,894","593,023","±16,504","20,540","±3,015","99,960","±8,185","38,914","±3,661","40,291","±2,152"
-Median House Value (dollars),"371,600","±8,255","472,600","±6,140","308,200","±2,956","289,200","±3,561","867,200","±4,333","610,200","±2,813","278,300","±4,155","383,100","±4,313","337,800","±5,172","230,200","±3,166"
-Median Buy Cost (dollars),"2,179",±61,"2,103",±43,"2,193",±25,"1,798",±22,"3,096",±23,"3,104",±20,"1,877",±33,"1,926",±24,"1,603",±38,"1,575",±22
-Median Rent Cost (dollars),"1,428",±46,"1,706",±49,"1,433",±14,"1,240",±17,"1,993",±11,"1,764",±10,"1,168",±26,"1,799",±23,"1,263",±41,"1,075",±16
+﻿City,Vacant housing units,Housing Unit Error Margin,Median House Value (dollars),House Value Error Margin,Median Buy Cost (dollars),Buy Cost Error Margin,Median Rent Cost (dollars),Rent Cost Error Margin
+"Anchorage, AK Metro Area!!Estimate","23,179","±2,604","371,600","±8,255","2,179",±61,"1,428",±46
+"Colorado Springs, CO Metro Area!!Estimate","15,728","±3,456","472,600","±6,140","2,103",±43,"1,706",±49
+"Houston-Pasadena-The Woodlands, TX Metro Area!!Estimate","247,018","±8,751","308,200","±2,956","2,193",±25,"1,433",±14
+"Kansas City, MO-KS Metro Area!!Estimate","63,030","±4,914","289,200","±3,561","1,798",±22,"1,240",±17
+"Los Angeles-Long Beach-Anaheim, CA Metro Area!!Estimate","285,894","±10,894","867,200","±4,333","3,096",±23,"1,993",±11
+"New York-Newark-Jersey City, NY-NJ Metro Area!!Estimate","593,023","±16,504","610,200","±2,813","3,104",±20,"1,764",±10
+"Omaha, NE-IA Metro Area!!Estimate","20,540","±3,015","278,300","±4,155","1,877",±33,"1,168",±26
+"Orlando-Kissimmee-Sanford, FL Metro Area!!Estimate","99,960","±8,185","383,100","±4,313","1,926",±24,"1,799",±23
+"Tucson, AZ Metro Area!!Estimate","38,914","±3,661","337,800","±5,172","1,603",±38,"1,263",±41
+"Tulsa, OK Metro Area!!Estimate","40,291","±2,152","230,200","±3,166","1,575",±22,"1,075",±16
