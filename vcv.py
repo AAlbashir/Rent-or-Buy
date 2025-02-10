@@ -24,45 +24,45 @@ def plot_vacancy(vacancy):
     buy_line = df.loc[:, "Median Buy Cost (dollars)"]
     rent_line = df.loc[:, "Median Rent Cost (dollars)"]
 
-    # Chart 1
-    fig, ax1 = plt.subplots(figsize=(10, 5))
-    plt.title("Vacancy & Cost")
-    plt.xticks(rotation=85)
-    plt.xlabel("City")
-        
+    fig, ax = plt.subplots(1, 2, figsize=(20, 5))
+                   
     # Primary y-axis - chart 1
-    ax1.bar(x_col, y1_col, color='slategrey', label="Vacant housing units")
-    ax1.set_ylabel("Number Vacant", color='black')
-    ax1.legend(loc="upper left")
-    ax1.yaxis.set_major_formatter(mticker.FuncFormatter(lambda x, pos: f"{int(x/1000)}K"))
+    ax[0].bar(x_col, y1_col, color='slategrey', label="Vacant housing units")
+    ax[0].set_ylabel("Number Vacant", color='black')
+    ax[0].set_xticklabels(x_col, rotation=85)
+    ax[0].set_xlabel("City", fontsize=14)
+    ax[0].legend(loc="upper left")
+    ax[0].yaxis.set_major_formatter(mticker.FuncFormatter(lambda x, pos: f"{int(x/1000)}K"))
                   
     # Secondary y-axis - chart 1
-    ax2 = ax1.twinx()
+    ax2 = ax[0].twinx()
     ax2.plot(x_col, buy_line, color='forestgreen', marker='o', linestyle='-', label="Median buy cost")
     ax2.plot(x_col, rent_line, color='darkred', marker='o', linestyle='-', label="Median rent cost")
     ax2.set_ylabel("Cost (USD)", color='black')
     ax2.legend(loc="best")
 
-    # Chart 2
-    fig, ax3 = plt.subplots(figsize=(10, 5))
-    plt.title("Home Value & Cost")
-    plt.xticks(rotation=85)
-    plt.xlabel("City")
+    # Chart 1
+    plt.title("Vacancy & Cost", fontsize=14, fontweight="bold")
     
     # Primary y-axis - chart 2
-    ax3.bar(x_col, y2_col, color='royalblue', label="Median home value")
-    ax3.set_ylabel("Home Value (USD)", color='black')
-    ax3.legend(loc="upper left")
-    ax3.yaxis.set_major_formatter(mticker.FuncFormatter(lambda x, pos: f"{int(x/1000)}K"))
+    ax[1].bar(x_col, y2_col, color='tan', label="Median home value")
+    ax[1].set_ylabel("Home Value (USD)", color='black')
+    ax[1].set_xticklabels(x_col, rotation=85)
+    ax[1].set_xlabel("City", fontsize=14)
+    ax[1].legend(loc="upper left")
+    ax[1].yaxis.set_major_formatter(mticker.FuncFormatter(lambda x, pos: f"{int(x/1000)}K"))
                   
     # Secondary y-axis - chart 2
-    ax4 = ax3.twinx()
+    ax4 = ax[1].twinx()
     ax4.plot(x_col, buy_line, color='forestgreen', marker='o', linestyle='-', label="Median buy cost")
     ax4.plot(x_col, rent_line, color='darkred', marker='o', linestyle='-', label="Median rent cost")
     ax4.set_ylabel("Cost (USD)", color='black')
     ax4.legend(loc="best")
 
+    # Chart 2
+    plt.title("Home Value & Cost", fontsize=14, fontweight="bold")
+    
     plt.show()
 
-vacancy = "data/USA DP04 vacancy value cost.csv" 
+vacancy = "USA DP04 vacancy value cost.csv" 
 plot_vacancy(vacancy)
