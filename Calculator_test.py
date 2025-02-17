@@ -2,11 +2,7 @@ import Calculator
 import unittest
 
 class TestCalculatorResult(unittest.TestCase):
-    """
-    def setUp(self):
-        self.result = Result('The result')
-    """
-    
+   
     def test_rent_cheaper(self):
         inputs = {
             "length_of_stay": 1,  # years
@@ -41,7 +37,7 @@ class TestCalculatorResult(unittest.TestCase):
         }
         self.assertEqual(result, expected)
    
-    def test_2_compare_rent_vs_buy(self):
+    def test_equal_cost(self):
       inputs = {
             "length_of_stay": 1,  # years
             "monthly_rent": 1,  # dollars
