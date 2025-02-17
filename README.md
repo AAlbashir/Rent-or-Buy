@@ -1,9 +1,9 @@
 # Rent-or-Buy
 *This is a repository for the group project of CAS 502*
 
-### Team Members: **Jeremy Roy & Abdallah Albashir**
+#### Team Members: Jeremy Roy & Abdallah Albashir
 
-## Project Title: ***Rent or Buy Financial Calculator***
+## Project Title: *Rent or Buy Financial Calculator*
 
 ### Description of the Problem
 
