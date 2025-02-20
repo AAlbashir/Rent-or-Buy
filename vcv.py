@@ -28,11 +28,12 @@ def plot_vacancy(vacancy):
                    
     # Primary y-axis - chart 1
     ax[0].bar(x_col, y1_col, color='slategrey', label="Vacant housing units")
-    ax[0].set_ylabel("Number Vacant", color='black')
-    ax[0].set_xticklabels(x_col, rotation=85)
     ax[0].set_xlabel("City", fontsize=14)
-    ax[0].legend(loc="upper left")
+    ax[0].set_xticklabels(x_col, rotation=85)
+    ax[0].set_ylabel("Number Vacant", color='black')
     ax[0].yaxis.set_major_formatter(mticker.FuncFormatter(lambda x, pos: f"{int(x/1000)}K"))
+    ax[0].legend(loc="upper left")
+    
                   
     # Secondary y-axis - chart 1
     ax2 = ax[0].twinx()
@@ -46,11 +47,12 @@ def plot_vacancy(vacancy):
     
     # Primary y-axis - chart 2
     ax[1].bar(x_col, y2_col, color='tan', label="Median home value")
-    ax[1].set_ylabel("Home Value (USD)", color='black')
-    ax[1].set_xticklabels(x_col, rotation=85)
     ax[1].set_xlabel("City", fontsize=14)
+    ax[1].set_xticklabels(x_col, rotation=85)
+    ax[1].set_ylabel("Home Value (USD)", color='black')
+    ax[1].yaxis.set_major_formatter(mticker.FuncFormatter(lambda x, pos: f"{int(x/1000)}K"))    
     ax[1].legend(loc="upper left")
-    ax[1].yaxis.set_major_formatter(mticker.FuncFormatter(lambda x, pos: f"{int(x/1000)}K"))
+    
                   
     # Secondary y-axis - chart 2
     ax4 = ax[1].twinx()
@@ -64,5 +66,5 @@ def plot_vacancy(vacancy):
     
     plt.show()
 
-vacancy = "USA DP04 vacancy value cost.csv" 
+vacancy = "data/USA DP04 vacancy value cost.csv" 
 plot_vacancy(vacancy)
