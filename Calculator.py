@@ -1,4 +1,6 @@
-# Added new parameters...JMR
+import numpy as np
+import matplotlib.pyplot as plt
+
 def compare_rent_vs_buy(length_of_stay, monthly_rent, home_price, down_payment, mortgage_rate, investment_interest_rate, property_tax_rate=1.2, maintenance_rate=1.0, selling_cost_rate=8.0): 
 
     """
@@ -11,27 +13,22 @@ def compare_rent_vs_buy(length_of_stay, monthly_rent, home_price, down_payment, 
     :param mortgage_rate: Annual mortgage interest rate (as percentage)
     :param property_tax_rate: Annual property tax rate (default 1.2%)
     :param maintenance_rate: Annual maintenance cost rate (default 1.0%)
-...Added parameter...JMR    
-    :param investment_interest_rate: Annual investment interest (as percentage) 
-...Added parameter...JMR
+    :param investment_interest_rate: Annual investment interest (as percentage)
     :param selling_cost_rate: Cumulative costs of selling a home (default 8.0%)
     :return: Total costs for renting and buying, and recommendation
     """
        
-    # Renting total cost
-# Added a financial return estimate for investing the down_payment amount...JMR
+    # Renting cost calculations
     investment = (down_payment * (investment_interest_rate / 100)) * length_of_stay 
-# Added investment calculation to total_rent_cost...JMR
-    total_rent_cost = (monthly_rent * 12 * length_of_stay) - investment 
+    total_rent_cost = (monthly_rent * 12 * length_of_stay) - investment
+    final_rent_cost = round(total_rent_cost, 2) #Rounded cost to account for real currency values
 
     
-    # Buying costs
+    # Buying cost calculations
     loan_amount = home_price - down_payment
     monthly_interest_rate = (mortgage_rate / 100) / 12
     num_payments = length_of_stay * 12
-# Added the estimated future value of the home...JMR
     home_appreciation = home_price * (1 + (investment_interest_rate / 100) / 12)**(12 * length_of_stay) 
-# Added the estimated costs of selling the home...JMR   
     selling_costs = home_appreciation * (selling_cost_rate / 100) 
 
     
@@ -43,35 +40,21 @@ def compare_rent_vs_buy(length_of_stay, monthly_rent, home_price, down_payment, 
     total_mortgage_cost = monthly_mortgage_payment * num_payments
     total_property_tax = (property_tax_rate / 100) * home_price * length_of_stay
     total_maintenance = (maintenance_rate / 100) * home_price * length_of_stay
-# Added a financial return estimate for sale of the home...JMR
     total_resale_value = home_appreciation - selling_costs 
 
-# Subtracted resale value of home from buying costs...JMR
-    total_buy_cost = down_payment + total_mortgage_cost + total_property_tax + total_maintenance - total_resale_value 
+    total_buy_cost = down_payment + total_mortgage_cost + total_property_tax + total_maintenance - total_resale_value
+    final_buy_cost = round(total_buy_cost, 2) #Rounded cost to account for real currency values
     
     # Recommendation
-    if total_rent_cost < total_buy_cost:
+    if final_rent_cost < final_buy_cost:
         recommendation = "Renting is financially better."
-    else:
+    elif final_rent_cost > final_buy_cost:
         recommendation = "Buying is financially better."
+    else:
+        recommendation = "Either."
     
     return {
-        "Total Rent Cost": total_rent_cost,
-        "Total Buy Cost": total_buy_cost,
+        "Rent Cost": final_rent_cost,
+        "Buy Cost": final_buy_cost,
         "Recommendation": recommendation
     }
-
-# Example Usage
-inputs = {
-    "length_of_stay": 2.333,  # years
-    "monthly_rent": 2000,  # dollars
-    "home_price": 500000,  # dollars
-    "down_payment": 100000,  # dollars
-    "mortgage_rate": 5.0,  # percent
-# ...Added new input...JMR
-    "investment_interest_rate": 4.0 # percent 
-    }
-
-result = compare_rent_vs_buy(**inputs)
-print(result)
-
