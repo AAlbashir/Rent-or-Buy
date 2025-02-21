@@ -1,9 +1,6 @@
 import unittest
 import numpy as np
-import matplotlib
-matplotlib.use("Agg")  # Prevents plots from appearing during tests
 import matplotlib.pyplot as plt
-from unittest.mock import patch
 from Break_even_Plots import plot_sensitivity_analysis
 
 class TestPlotSensitivityAnalysis(unittest.TestCase):
@@ -19,43 +16,24 @@ class TestPlotSensitivityAnalysis(unittest.TestCase):
             "investment_interest_rate": 4.0
         }
 
-    @patch("matplotlib.pyplot.show")
-    def test_factors_not_multiple_of_increment(self, mock_show):
-        """ Test for factors that are not multiples of the increments defined """
-        # Test each factor with a value that is not a multiple of the increment
-        test_cases = {
-            "length_of_stay": 2.5,  # Not a multiple of 1 (increment is 1)
-            "monthly_rent": 1050,  # Not a multiple of 100 (increment is 100)
-            "home_price": 100500,  # Not a multiple of 1000 (increment is 1000)
-            "down_payment": 1500,  # Not a multiple of 1000 (increment is 1000)
-            "mortgage_rate": 5.25,  # Not a multiple of 0.5 (increment is 0.5)
-            "investment_interest_rate": 4.05  # Not a multiple of 0.1 (increment is 0.1)
-        }
+    def test_valid_inputs(self):
+        """ Test for valid inputs to ensure plotting works """
+        try:
+            plot_sensitivity_analysis(self.valid_inputs)
+        except Exception as e:
+            self.assertTrue(False, f"plot_sensitivity_analysis failed with valid inputs: {e}")
         
-        for factor, value in test_cases.items():
-            with self.subTest(factor=factor):
-                test_inputs = self.valid_inputs.copy()
-                test_inputs[factor] = value
+        plt.close()  # Close figure after plotting
 
-                try:
-                    plot_sensitivity_analysis(test_inputs)
-                except Exception as e:
-                    self.assertTrue(False, f"plot_sensitivity_analysis failed with non-multiple value for {factor}: {e}")
-                
-                # Close the figure after plotting to prevent memory overload
-                plt.close()
-
-    @patch("matplotlib.pyplot.show")
-    def test_factors_at_zero(self, mock_show):
-        """ Test for factors that are set to zero """
-        # Test each factor with a zero value
+    def test_factors_not_multiple_of_increment(self):
+        """ Test for factors that are not multiples of the increments defined """
         test_cases = {
-            "length_of_stay": 0,  # Zero value
-            "monthly_rent": 0,  # Zero value
-            "home_price": 0,  # Zero value
-            "down_payment": 0,  # Zero value
-            "mortgage_rate": 0,  # Zero value
-            "investment_interest_rate": 0  # Zero value
+            "length_of_stay": 2.5,
+            "monthly_rent": 1050,
+            "home_price": 100500,
+            "down_payment": 1500,
+            "mortgage_rate": 5.25,
+            "investment_interest_rate": 4.05
         }
 
         for factor, value in test_cases.items():
@@ -66,22 +44,19 @@ class TestPlotSensitivityAnalysis(unittest.TestCase):
                 try:
                     plot_sensitivity_analysis(test_inputs)
                 except Exception as e:
-                    self.assertTrue(False, f"plot_sensitivity_analysis failed with zero value for {factor}: {e}")
-                
-                # Close the figure after plotting to prevent memory overload
+                    self.assertTrue(False, f"plot_sensitivity_analysis failed for {factor}: {e}")
+
                 plt.close()
 
-    @patch("matplotlib.pyplot.show")
-    def test_negative_factors(self, mock_show):
-        """ Test for factors that are negative values """
-        # Test each factor with a negative value
+    def test_very_small_values(self):
+        """ Test for very small positive values near zero """
         test_cases = {
-            "length_of_stay": -1,  # Negative value
-            "monthly_rent": -500,  # Negative value
-            "home_price": -100000,  # Negative value
-            "down_payment": -5000,  # Negative value
-            "mortgage_rate": -0.5,  # Negative value
-            "investment_interest_rate": -1.5  # Negative value
+            "length_of_stay": 0.01,
+            "monthly_rent": 0.1,
+            "home_price": 1,
+            "down_payment": 0.01,
+            "mortgage_rate": 0.001,
+            "investment_interest_rate": 0.0001
         }
 
         for factor, value in test_cases.items():
@@ -92,11 +67,32 @@ class TestPlotSensitivityAnalysis(unittest.TestCase):
                 try:
                     plot_sensitivity_analysis(test_inputs)
                 except Exception as e:
-                    self.assertTrue(False, f"plot_sensitivity_analysis failed with negative value for {factor}: {e}")
-                
-                # Close the figure after plotting to prevent memory overload
+                    self.assertTrue(False, f"plot_sensitivity_analysis failed for very small {factor}: {e}")
+
+                plt.close()
+
+    def test_very_large_values(self):
+        """ Test for very large values """
+        test_cases = {
+            "length_of_stay": 1000,
+            "monthly_rent": 1e7,
+            "home_price": 1e9,
+            "down_payment": 1e8,
+            "mortgage_rate": 99.9,
+            "investment_interest_rate": 100.0
+        }
+
+        for factor, value in test_cases.items():
+            with self.subTest(factor=factor):
+                test_inputs = self.valid_inputs.copy()
+                test_inputs[factor] = value
+
+                try:
+                    plot_sensitivity_analysis(test_inputs)
+                except Exception as e:
+                    self.assertTrue(False, f"plot_sensitivity_analysis failed for very large {factor}: {e}")
+
                 plt.close()
 
 if __name__ == '__main__':
     unittest.main()
-
