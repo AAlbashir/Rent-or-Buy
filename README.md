@@ -28,6 +28,10 @@
  * New features and bug fixes will use feature branches.
  * Feature branches will be reviewed and merged into the main branch using pull requests.
 
+#### Installing the Project
+For detailed installation instructions, visit our [Installation Instructions](https://github.com/AAlbashir/Rent-or-Buy/wiki/Installation-Instructions).
+
+
 #### Reporting a Bug or Requesting a Feature
 
 1. Go to the repository on GitHub.
