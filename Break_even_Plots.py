@@ -29,6 +29,7 @@ def compare_rent_vs_buy(length_of_stay, monthly_rent, home_price, down_payment, 
 # Added rounded value to account for currency values...JMR
     final_rent_cost = round(total_rent_cost, 2)
 
+
     
     # Buying costs
     loan_amount = home_price - down_payment
@@ -86,6 +87,7 @@ inputs = {
 result = compare_rent_vs_buy(**inputs)
 print(result)
 """
+
 
 def plot_sensitivity_analysis(base_inputs):
     """

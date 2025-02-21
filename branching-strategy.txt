@@ -1,4 +1,0 @@
-Branching Strategy
-
-* New features and bug fixes will use feature branches.
-* Feature branches will be reviewed and merged into the main branch using pull requests.
