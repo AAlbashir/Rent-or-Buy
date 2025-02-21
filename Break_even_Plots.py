@@ -25,7 +25,9 @@ def compare_rent_vs_buy(length_of_stay, monthly_rent, home_price, down_payment, 
 # Added a financial return estimate for investing the down_payment amount...JMR
     investment = (down_payment * (investment_interest_rate / 100)) * length_of_stay 
 # Added investment calculation to total_rent_cost...JMR
-    total_rent_cost = (monthly_rent * 12 * length_of_stay) - investment 
+    total_rent_cost = (monthly_rent * 12 * length_of_stay) - investment
+# Added rounded value to account for currency values...JMR
+    final_rent_cost = round(total_rent_cost, 2)
 
     
     # Buying costs
@@ -50,54 +52,27 @@ def compare_rent_vs_buy(length_of_stay, monthly_rent, home_price, down_payment, 
     total_resale_value = home_appreciation - selling_costs 
 
 # Subtracted resale value of home from buying costs...JMR
-    total_buy_cost = down_payment + total_mortgage_cost + total_property_tax + total_maintenance - total_resale_value 
+    total_buy_cost = down_payment + total_mortgage_cost + total_property_tax + total_maintenance - total_resale_value
+# Added rounded value to account for currency values...JMR
+    final_buy_cost = round(total_buy_cost, 2)
     
     # Recommendation
-    if total_rent_cost < total_buy_cost:
+    if final_rent_cost < final_buy_cost:
         recommendation = "Renting is financially better."
-    else:
+    elif final_rent_cost > final_buy_cost:
         recommendation = "Buying is financially better."
+# Added new condition for equivalent costs...JMR 
+    else:
+        recommendation = "Either."
     
     return {
-        "Total Rent Cost": total_rent_cost,
-        "Total Buy Cost": total_buy_cost,
+        "Rent Cost": final_rent_cost,
+        "Buy Cost": final_buy_cost,
         "Recommendation": recommendation
     }
-
-def plot_sensitivity_analysis(base_inputs):
-    """
-    Plots how the total rent and buy costs change when varying one input factor at a time.
-    """
-    factors = {
-        "length_of_stay": (1, base_inputs["length_of_stay"], 1),
-        "monthly_rent": (0, base_inputs["monthly_rent"], 100),
-        "home_price": (0, base_inputs["home_price"], 1000),
-        "down_payment": (0, base_inputs["down_payment"], 1000),
-        "mortgage_rate": (0, base_inputs["mortgage_rate"], 0.5)
-    }
     
-    for factor, (start, stop, step) in factors.items():
-        values = np.arange(start, stop + step, step)
-        rent_costs, buy_costs = [], []
-        
-        for value in values:
-            inputs = base_inputs.copy()
-            inputs[factor] = value
-            result = compare_rent_vs_buy(**inputs)
-            rent_costs.append(result["Total Rent Cost"])
-            buy_costs.append(result["Total Buy Cost"])
-        
-        plt.figure(figsize=(8, 5))
-        plt.plot(values, rent_costs, label='Total Rent Cost', marker='o')
-        plt.plot(values, buy_costs, label='Total Buy Cost', marker='s')
-        plt.xlabel(factor.replace("_", " ").title())
-        plt.ylabel("Cost (USD)")
-        plt.title(f"Impact of {factor.replace('_', ' ').title()} on Rent vs. Buy Cost")
-        plt.legend()
-        plt.grid()
-        plt.show()
-        
 # Example Usage
+"""
 inputs = {
     "length_of_stay": 2.333,  # years
     "monthly_rent": 2000,  # dollars
@@ -110,6 +85,38 @@ inputs = {
 
 result = compare_rent_vs_buy(**inputs)
 print(result)
+"""
 
-# Plot Sensitivity Analysis
-plot_sensitivity_analysis(inputs)
+def plot_sensitivity_analysis(base_inputs):
+    """
+    Plots how the total rent and buy costs change when varying one input factor at a time.
+    """
+    factors = {
+        "length_of_stay": (1, base_inputs["length_of_stay"], 1),
+        "monthly_rent": (0, base_inputs["monthly_rent"], 100),
+        "home_price": (0, base_inputs["home_price"], 1000),
+        "down_payment": (0, base_inputs["down_payment"], 1000),
+        "mortgage_rate": (0, base_inputs["mortgage_rate"], 0.5),
+        "investment_interest_rate": (0, base_inputs["investment_interest_rate"], 0.5)
+    }
+    
+    for factor, (start, stop, step) in factors.items():
+        values = np.arange(start, stop + step, step)
+        rent_costs, buy_costs = [], []
+        
+        for value in values:
+            inputs = base_inputs.copy()
+            inputs[factor] = value
+            result = compare_rent_vs_buy(**inputs)
+            rent_costs.append(result["Rent Cost"])
+            buy_costs.append(result["Buy Cost"])
+        
+        plt.figure(figsize=(8, 5))
+        plt.plot(values, rent_costs, label='Rent Cost', marker='o')
+        plt.plot(values, buy_costs, label='Buy Cost', marker='s')
+        plt.xlabel(factor.replace("_", " ").title())
+        plt.ylabel("Cost (USD)")
+        plt.title(f"Impact of {factor.replace('_', ' ').title()} on Rent vs. Buy Cost")
+        plt.legend()
+        plt.grid()
+        plt.show()
