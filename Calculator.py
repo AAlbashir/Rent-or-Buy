@@ -1,3 +1,6 @@
+import numpy as np
+import matplotlib.pyplot as plt
+
 # Added new parameters...JMR
 def compare_rent_vs_buy(length_of_stay, monthly_rent, home_price, down_payment, mortgage_rate, investment_interest_rate, property_tax_rate=1.2, maintenance_rate=1.0, selling_cost_rate=8.0): 
 
@@ -22,7 +25,9 @@ def compare_rent_vs_buy(length_of_stay, monthly_rent, home_price, down_payment, 
 # Added a financial return estimate for investing the down_payment amount...JMR
     investment = (down_payment * (investment_interest_rate / 100)) * length_of_stay 
 # Added investment calculation to total_rent_cost...JMR
-    total_rent_cost = (monthly_rent * 12 * length_of_stay) - investment 
+    total_rent_cost = (monthly_rent * 12 * length_of_stay) - investment
+# Added rounded value to account for currency values...JMR
+    final_rent_cost = round(total_rent_cost, 2)
 
     
     # Buying costs
@@ -47,21 +52,27 @@ def compare_rent_vs_buy(length_of_stay, monthly_rent, home_price, down_payment, 
     total_resale_value = home_appreciation - selling_costs 
 
 # Subtracted resale value of home from buying costs...JMR
-    total_buy_cost = down_payment + total_mortgage_cost + total_property_tax + total_maintenance - total_resale_value 
+    total_buy_cost = down_payment + total_mortgage_cost + total_property_tax + total_maintenance - total_resale_value
+# Added rounded value to account for currency values...JMR
+    final_buy_cost = round(total_buy_cost, 2)
     
     # Recommendation
-    if total_rent_cost < total_buy_cost:
+    if final_rent_cost < final_buy_cost:
         recommendation = "Renting is financially better."
-    else:
+    elif final_rent_cost > final_buy_cost:
         recommendation = "Buying is financially better."
+# Added new condition for equivalent costs...JMR 
+    else:
+        recommendation = "Either."
     
     return {
-        "Total Rent Cost": total_rent_cost,
-        "Total Buy Cost": total_buy_cost,
+        "Rent Cost": final_rent_cost,
+        "Buy Cost": final_buy_cost,
         "Recommendation": recommendation
     }
-
+    
 # Example Usage
+"""
 inputs = {
     "length_of_stay": 2.333,  # years
     "monthly_rent": 2000,  # dollars
@@ -74,4 +85,4 @@ inputs = {
 
 result = compare_rent_vs_buy(**inputs)
 print(result)
-
+"""
