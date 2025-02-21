@@ -28,6 +28,14 @@
  * New features and bug fixes will use feature branches.
  * Feature branches will be reviewed and merged into the main branch using pull requests.
 
+#### Reporting a Bug or Requesting a Feature
+
+1. Go to the repository on GitHub.
+2. On the repository main page, click on the "Issues" tab.
+3. Click on the "New Issue" button and choose between "Bug report" and "Feature request" templates
+4. Fill out the template
+5. Click on "Submit new issue"
+
 ## References
 > Homesight.org. (2024). *Housing Market Trends in Major Cities Around the World.* **https://homesight.org/housing-market-trends-in-major-cities-around-the-world/**
 >
