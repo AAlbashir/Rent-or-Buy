@@ -31,18 +31,18 @@
 #### Reporting a Bug or Requesting a Feature
 
 1. Go to the repository on GitHub.
-2. On the repository main page, click on the "Issues" tab.
-3. Click on the "New Issue" button and choose between "Bug report" and "Feature request" templates
-4. Fill out the template
-5. Click on "Submit new issue"
+2. On the repository main page, click on the "**Issues**" tab.
+3. Click on the "**New Issue**" button, then select either the "**Bug report**" or "**Feature request**" template.
+4. Fill out the template.
+5. Click on "**Submit new issue**".
 
 #### Contributing to the Project
 
 1. Go to the repository on GitHub.
-2. On the repository main page, click the "Fork" button at the top-right side.
+2. On the repository main page, click the "**Fork**" button at the top-right side.
 3. Make your changes.
-4. Push your cahnges.
-5. Click on "New Pull Request" button.
+4. Push your changes.
+5. Click on "**New Pull Request**" button.
 
 ## References
 > Homesight.org. (2024). *Housing Market Trends in Major Cities Around the World.* **https://homesight.org/housing-market-trends-in-major-cities-around-the-world/**
