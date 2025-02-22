@@ -94,7 +94,8 @@ def plot_sensitivity_analysis(base_inputs):
     """
     Plots how the total rent and buy costs change when varying one input factor at a time.
     """
-    # Define the factors to be varied along with their start, stop, and increment values
+    # Defines the range and step size for each sensitivity analysis factor
+    # Step sizes are chosen to balance granularity and computational efficiency
     factors = {
         "length_of_stay": (1, base_inputs["length_of_stay"], 1),
         "monthly_rent": (0, base_inputs["monthly_rent"], 100),
