@@ -1,4 +1,4 @@
-import Calculator
+import calculator
 import unittest
 
 class TestCalculatorResult(unittest.TestCase):
@@ -12,7 +12,7 @@ class TestCalculatorResult(unittest.TestCase):
             "mortgage_rate": 0,  # percent
             "investment_interest_rate": 0 # percent
         }
-        result = Calculator.compare_rent_vs_buy(**inputs)
+        result = calculator.compare_rent_vs_buy(**inputs)
         expected = {
             "Rent Cost": 12, 
             "Buy Cost": 12.01, 
@@ -29,7 +29,7 @@ class TestCalculatorResult(unittest.TestCase):
             "mortgage_rate": 0,  # percent
             "investment_interest_rate": 0 # percent
         }
-        result = Calculator.compare_rent_vs_buy(**inputs)
+        result = calculator.compare_rent_vs_buy(**inputs)
         expected = {
             "Rent Cost": 12, 
             "Buy Cost": 11.99, 
@@ -46,7 +46,7 @@ class TestCalculatorResult(unittest.TestCase):
             "mortgage_rate": 0,  # percent
             "investment_interest_rate": 0 # percent
       }
-      result = Calculator.compare_rent_vs_buy(**inputs)
+      result = calculator.compare_rent_vs_buy(**inputs)
       expected = {
             "Rent Cost": 12, 
             "Buy Cost": 12, 
