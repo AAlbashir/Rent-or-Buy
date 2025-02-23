@@ -1,7 +1,7 @@
 import unittest
 import numpy as np
 import matplotlib.pyplot as plt
-from Break_even_Plots import plot_sensitivity_analysis
+from break_even_plots import plot_sensitivity_analysis
 
 class TestPlotSensitivityAnalysis(unittest.TestCase):
 
