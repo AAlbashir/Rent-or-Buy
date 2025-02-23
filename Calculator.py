@@ -1,6 +1,3 @@
-import numpy as np
-import matplotlib.pyplot as plt
-
 def compare_rent_vs_buy(length_of_stay, monthly_rent, home_price, down_payment, mortgage_rate, investment_interest_rate, property_tax_rate=1.2, maintenance_rate=1.0, selling_cost_rate=8.0): 
 
     """
@@ -58,3 +55,14 @@ def compare_rent_vs_buy(length_of_stay, monthly_rent, home_price, down_payment, 
         "Buy Cost": final_buy_cost,
         "Recommendation": recommendation
     }
+
+inputs = {
+            "length_of_stay": 2.333,  # years
+            "monthly_rent": 1200,  # dollars
+            "home_price": 300000,  # dollars
+            "down_payment": 60000,  # dollars
+            "mortgage_rate": 5.0,  # percent
+            "investment_interest_rate": 4.0 # percent
+        }
+result = compare_rent_vs_buy(**inputs)
+print(result)
