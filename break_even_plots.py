@@ -1,6 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
-import Calculator
+import calculator
 
 # Updated to align with modifications in the compare_rent_vs_buy function, ensuring consistency in analysis.
 def plot_sensitivity_analysis(base_inputs):
@@ -26,7 +26,7 @@ def plot_sensitivity_analysis(base_inputs):
         for value in values:
             inputs = base_inputs.copy()
             inputs[factor] = value
-            result = Calculator.compare_rent_vs_buy(**inputs)
+            result = calculator.compare_rent_vs_buy(**inputs)
             rent_costs.append(result["Rent Cost"])
             buy_costs.append(result["Buy Cost"])
         
@@ -41,4 +41,4 @@ def plot_sensitivity_analysis(base_inputs):
         plt.grid()
         plt.show()
 
-plot_sensitivity_analysis(Calculator.inputs)
+plot_sensitivity_analysis(calculator.inputs)
