@@ -53,3 +53,7 @@ class TestCalculatorResult(unittest.TestCase):
             "Recommendation": 'Either.'
       }
       self.assertEqual(result, expected)
+
+# Added Name-Main idiom to run unit test as a script and automatically load unittest module
+if __name__== "__main__":
+    unittest.main()
