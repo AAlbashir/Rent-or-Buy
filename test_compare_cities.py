@@ -10,14 +10,14 @@ class TestCompareCities(unittest.TestCase):
 
     
     def test_chart_labels(self):
-        fig, ax = plt.subplots()
-        ax2 = ax.twinx()
-        ax.set_xlabel("X Axis Label")
-        ax.set_ylabel("Left Y Axis")
+        fig, ax1 = plt.subplots()
+        ax2 = ax1.twinx()
+        ax1.set_xlabel("X Axis Label")
+        ax1.set_ylabel("Left Y Axis")
         ax2.set_ylabel("Right Y Axis")
 
-        assert ax.get_xlabel() == "X Axis Label"
-        assert ax.get_ylabel() == "Left Y Axis"
+        assert ax1.get_xlabel() == "X Axis Label"
+        assert ax1.get_ylabel() == "Left Y Axis"
         assert ax2.get_ylabel() == "Right Y Axis"
         
         
