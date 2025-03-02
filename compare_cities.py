@@ -25,11 +25,14 @@ def plot_vacancy(vacancy):
     rent_line = df.loc[:, "Median Rent Cost (dollars)"]
 
     fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(20, 5))
+    
                            
     # Primary y-axis - chart 1
     ax1.bar(x_col, y1_col, color='slategrey', label="Vacant housing units")
     ax1.set_xlabel("City", fontsize=14)
-    ax1.set_xticklabels(x_col, rotation=85)
+    ax1.set_xticks(ax1.get_xticks())
+    ax1.set_xticklabels(ax1.get_xticklabels(), rotation=85, ha='right')
+    # ax1.set_xticklabels(x_col, rotation=85)
     ax1.set_ylabel("Number Vacant", color='black')
     ax1.yaxis.set_major_formatter(mticker.FuncFormatter(lambda x, pos: f"{int(x/1000)}K"))
     ax1.legend(loc="upper left")
@@ -48,7 +51,9 @@ def plot_vacancy(vacancy):
     # Primary y-axis - chart 2
     ax2.bar(x_col, y2_col, color='tan', label="Median home value")
     ax2.set_xlabel("City", fontsize=14)
-    ax2.set_xticklabels(x_col, rotation=85)
+    ax2.set_xticks(ax2.get_xticks())
+    ax2.set_xticklabels(ax2.get_xticklabels(), rotation=85, ha='right')
+    # ax2.set_xticklabels(x_col, rotation=85)
     ax2.set_ylabel("Home Value (USD)", color='black')
     ax2.yaxis.set_major_formatter(mticker.FuncFormatter(lambda x, pos: f"{int(x/1000)}K"))    
     ax2.legend(loc="upper left")
