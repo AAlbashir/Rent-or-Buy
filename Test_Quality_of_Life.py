@@ -7,7 +7,7 @@ class TestQualityOfLife(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         """Load the Excel data once for all tests."""
-        cls.file_path = "C:\\Users\\Abdallah.Albashir\\Desktop\\Rent-or-Buy\\data\\Random Cities in USA (Quality of Life Index).xlsx"
+        cls.file_path = "data/Random Cities in USA (Quality of Life Index).xlsx"
         cls.df = load_data(cls.file_path)
 
     def test_compute_quality_of_life_all_cities(self):
