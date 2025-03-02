@@ -68,7 +68,7 @@ def compute_quality_of_life(data, city):
 
 # Update file path for correct data loading
 if __name__ == "__main__":
-    file_path = "C:\\Users\\Abdallah.Albashir\\Desktop\\Rent-or-Buy\\data\\Random Cities in USA (Quality of Life Index).xlsx"
+    file_path = "data/Random Cities in USA (Quality of Life Index).xlsx"
     df = load_data(file_path)
     city_name = "Los Angeles, CA"  # Change as needed
     compute_quality_of_life(df, city_name)
