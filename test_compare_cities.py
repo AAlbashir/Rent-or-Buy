@@ -22,7 +22,7 @@ class TestCompareCities(unittest.TestCase):
         
         
     def test_data_frame(self):  
-        df = pd.read_csv("data/test_file.csv")
+        df = pd.read_csv("data/test_data.csv")
                
         # Convert numerical columns from object to integer
         cols_to_convert = ["y1", "y2"]    
