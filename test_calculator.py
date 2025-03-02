@@ -54,6 +54,6 @@ class TestCalculatorResult(unittest.TestCase):
       }
       self.assertEqual(result, expected)
 
-# Added Name-Main idiom to run unit test as a script and automatically load unittest module
+# Added Name-Main idiom to to ensure that the test cases are executed only when the script is run directly and not when it is imported as a module
 if __name__== "__main__":
     unittest.main()

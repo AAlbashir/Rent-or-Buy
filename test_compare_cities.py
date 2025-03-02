@@ -8,7 +8,9 @@ import compare_cities
 class TestCompareCities(unittest.TestCase):    
     vacancy = "data/USA DP04 vacancy value cost.csv"
 
-    
+"""
+Testing that chart labels are being placed on the intended axes
+"""    
     def test_chart_labels(self):
         fig, ax1 = plt.subplots()
         ax2 = ax1.twinx()
@@ -19,21 +21,25 @@ class TestCompareCities(unittest.TestCase):
         assert ax1.get_xlabel() == "X Axis Label"
         assert ax1.get_ylabel() == "Left Y Axis"
         assert ax2.get_ylabel() == "Right Y Axis"
-        
-        
+
+"""        
+Testing that .csv table is formatted as intended
+"""        
     def test_data_frame(self):  
         df = pd.read_csv("data/test_data.csv")
                
         # Convert numerical columns from object to integer
         cols_to_convert = ["y1", "y2"]    
         for col in cols_to_convert:
-            df[col] = df[col].str.replace(",", "").astype(np.int64)
+            df[col] = df[col].str.replace(",", "").astype(np.int64) # Used int64 so the dtype of .csv file matches the dtype of expected_df 
 
         expected_df = pd.DataFrame({"x": ["A", "B", "C", "D"], "y1": [100000, 200000, 300000, 400000], "y2": [1000, 2000, 3000, 4000]})
         
         pd.testing.assert_frame_equal(df, expected_df)
         
-
+"""
+Testing that plot_vacancy() function creates the intented plot of bars and lines, and labels intended axes
+"""  
     def test_plot_function(self): 
 
                 
@@ -63,6 +69,6 @@ class TestCompareCities(unittest.TestCase):
             mock_secax_ax2.set_ylabel.assert_called()
             
  
-# Added Name-Main idiom to run unit test as a script and automatically load unittest module
+# Added Name-Main idiom to to ensure that the test cases are executed only when the script is run directly and not when it is imported as a module
 if __name__== "__main__":
     unittest.main()
