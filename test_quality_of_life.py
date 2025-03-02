@@ -1,6 +1,6 @@
 import unittest
 import pandas as pd
-from Quality_of_Life import load_data, compute_quality_of_life
+from quality_of_life import load_data, compute_quality_of_life
 
 class TestQualityOfLife(unittest.TestCase):
 
