@@ -17,7 +17,8 @@ To learn more about how we designed our project collaboration, visit our [Rent-o
 
 ## Installing the Project
 For detailed installation instructions, visit our [Installation Instructions](https://github.com/AAlbashir/Rent-or-Buy/wiki/Installation-Instructions) wiki page.  
-For detailed user instructions, visit our [User Documentation](https://github.com/AAlbashir/Rent-or-Buy/wiki/User-Documentation) wiki page.
+For detailed user instructions, visit our [User Documentation](https://github.com/AAlbashir/Rent-or-Buy/wiki/User-Documentation) wiki page.  
+For detailed testing instructions, visit our [Testing Documentation](https://github.com/AAlbashir/Rent-or-Buy/wiki/Testing-Documentation) wiki page.  
 
 ### Reporting a Bug or Requesting a Feature
 
