@@ -1,7 +1,7 @@
 import unittest
 import numpy as np
 import matplotlib.pyplot as plt
-from Basic_Features_Integrated import plot_sensitivity_analysis
+from Rent_or_Buy_Integrated import plot_sensitivity_analysis  # Import from Rent_or_Buy_Integrated
 
 class TestPlotSensitivityAnalysis(unittest.TestCase):
 
@@ -28,12 +28,12 @@ class TestPlotSensitivityAnalysis(unittest.TestCase):
     def test_factors_not_multiple_of_increment(self):
         """ Test for factors that are not multiples of the increments defined """
         test_cases = {
-            "length_of_stay": 2.5, # Not mutliple of 1 increment defined
-            "monthly_rent": 1050, # Not mutliple of 100 increment defined
-            "home_price": 100500, # Not mutliple of 1000 increment defined
-            "down_payment": 1500, # Not mutliple of 1000 increment defined
-            "mortgage_rate": 5.25, # Not mutliple of 0.5 increment defined
-            "investment_interest_rate": 4.05 # Not mutliple of 0.5 increment defined
+            "length_of_stay": 2.5,  # Not multiple of 1 increment defined
+            "monthly_rent": 1050,  # Not multiple of 100 increment defined
+            "home_price": 100500,  # Not multiple of 1000 increment defined
+            "down_payment": 1500,  # Not multiple of 1000 increment defined
+            "mortgage_rate": 5.25,  # Not multiple of 0.5 increment defined
+            "investment_interest_rate": 4.05  # Not multiple of 0.5 increment defined
         }
 
         for factor, value in test_cases.items():
@@ -51,7 +51,7 @@ class TestPlotSensitivityAnalysis(unittest.TestCase):
     def test_very_small_values(self):
         """ Test for very small positive values near zero """
         test_cases = {
-            "length_of_stay": 1,  # Lowest possible length of stay
+            "length_of_stay": 0.01,  # Near-zero stay duration
             "monthly_rent": 0.1,  # Extremely low rent
             "home_price": 1,  # Unrealistically low home price
             "down_payment": 0.01,  # Tiny down payment
