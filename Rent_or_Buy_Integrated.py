@@ -9,36 +9,44 @@ df = pd.read_excel(file_path)
 
 # Function to get user inputs and filter the data
 def get_user_inputs():
-    # Get available cities
+    """
+    Get user inputs for city, location, and number of bedrooms.
+    Filters the data set based on these inputs and returns relevant data for rent vs buy comparison.
+    """
+    # Get available cities from the dataset
     available_cities = df['City'].unique()
     print("Available cities:", ", ".join(available_cities))
+    
+    # Prompt the user to enter a city
     city = input("Enter the city: ").strip()
     
-    # Get location
+    # Prompt the user to enter a location (City Centre or Outside City Centre)
     location = input("Enter location (City Centre or Outside City Centre): ").strip()
     
-    # Get number of bedrooms
+    # Prompt the user to enter the number of bedrooms (1 or 3)
     bedrooms = input("Enter number of bedrooms (1 or 3): ").strip()
     
-    # Filter the data based on user inputs
+    # Filter the dataset based on user inputs
     filtered_data = df[(df['City'] == city) & 
                        (df['Location'] == location) & 
                        (df['Number of Bedrooms'] == int(bedrooms))]
-    
+
+    # If no data is found for the given inputs, prompt the user to try again
     if filtered_data.empty:
         print("No data found for the given inputs. Please try again.")
         return get_user_inputs()
     
-    # Extract values from the filtered data
+    # Extract relevant values from the filtered data
     monthly_rent = filtered_data['Rent per Month'].values[0]
     home_price = filtered_data['Buy Apartment Price Total'].values[0]
     mortgage_rate = filtered_data['Mortgage Intrest Rate'].values[0]
     
-    # Get additional inputs
+    # Get additional inputs from the user
     length_of_stay = float(input("Enter length of stay in years: "))
     down_payment = float(input("Enter down payment in dollars: "))
     investment_interest_rate = float(input("Enter investment interest rate (as percentage): "))
-    
+
+    # Return a dictionary of all inputs for further processing
     return {
         "length_of_stay": length_of_stay,
         "monthly_rent": monthly_rent,
@@ -67,33 +75,49 @@ def compare_rent_vs_buy(length_of_stay, monthly_rent, home_price, down_payment, 
     """
           
     # Renting cost calculations
+    # Calculate the investment return from the down payment over the length of stay
     investment = (down_payment * (investment_interest_rate / 100)) * length_of_stay 
+    # Calculate the total rent cost over the length of stay, subtracting the investment return
     total_rent_cost = (monthly_rent * 12 * length_of_stay) - investment
+     # Round the final rent cost to 2 decimal places for currency formatting
     final_rent_cost = round(total_rent_cost, 2) #Rounded cost to account for real currency values
 
     
     # Buying cost calculations
+    # Calculate the loan amount after subtracting the down payment
     loan_amount = home_price - down_payment
+    # Convert annual mortgage rate to monthly rate
     monthly_interest_rate = (mortgage_rate / 100) / 12
+    # Calculate the total number of mortgage payments
     num_payments = length_of_stay * 12
+    # Calculate the home appreciation over the length of stay
     home_appreciation = home_price * (1 + (investment_interest_rate / 100) / 12)**(12 * length_of_stay) 
+     # Calculate the selling costs as a percentage of the appreciated home value
     selling_costs = home_appreciation * (selling_cost_rate / 100) 
 
     
+    # Calculate the monthly mortgage payment using the loan formula
     if monthly_interest_rate > 0:
         monthly_mortgage_payment = loan_amount * (monthly_interest_rate * (1 + monthly_interest_rate) ** num_payments) / ((1 + monthly_interest_rate) ** num_payments - 1)
     else:
+        # If interest rate is 0, divide the loan amount by the number of payments
         monthly_mortgage_payment = loan_amount / num_payments
     
+    # Calculate total mortgage cost over the length of stay
     total_mortgage_cost = monthly_mortgage_payment * num_payments
+    # Calculate total property tax over the length of stay
     total_property_tax = (property_tax_rate / 100) * home_price * length_of_stay
+    # Calculate total maintenance cost over the length of stay
     total_maintenance = (maintenance_rate / 100) * home_price * length_of_stay
+    # Calculate the resale value after subtracting selling costs
     total_resale_value = home_appreciation - selling_costs 
 
+    # Calculate the total cost of buying, including down payment, mortgage, taxes, maintenance, and resale value
     total_buy_cost = down_payment + total_mortgage_cost + total_property_tax + total_maintenance - total_resale_value
+    # Round the final buy cost to 2 decimal places for currency formatting
     final_buy_cost = round(total_buy_cost, 2) #Rounded cost to account for real currency values
     
-    # Recommendation
+    # Recommendation based on which option is cheaper
     if final_rent_cost < final_buy_cost:
         recommendation = "Renting is financially better."
     elif final_rent_cost > final_buy_cost:
@@ -101,6 +125,7 @@ def compare_rent_vs_buy(length_of_stay, monthly_rent, home_price, down_payment, 
     else:
         recommendation = "Either."
     
+    # Return the results as a dictionary
     return {
         "Rent Cost": final_rent_cost,
         "Buy Cost": final_buy_cost,
@@ -124,6 +149,7 @@ def plot_sensitivity_analysis(base_inputs):
     
     # Iterate over each factor to analyze its impact
     for factor, (start, stop, step) in factors.items():
+        # Generate a range of values for the current factor
         values = np.arange(start, stop + step, step)
         rent_costs, buy_costs = [], []
         
@@ -235,6 +261,7 @@ def plot_vacancy(excel_file):
 # Function to compute Quality of Life Index
 def compute_quality_of_life(data, city):
     """Compute the Quality of Life Index for a given city."""
+    # Filter the dataset for the selected city
     row = data[data['City'] == city]
     if row.empty:
         print("City not found.")
@@ -257,10 +284,10 @@ def compute_quality_of_life(data, city):
         print("Missing value in data.")
         return
     
-    # Compute Quality of Life Index
+    # Compute Quality of Life Index using a weighted formula
     qol = max(0, 100 + pp / 2.5 - prop * 1.0 - col / 10 + safety / 2.0 + health / 2.5 - traffic / 2.0 - pollution * 2.0 / 3.0 + climate / 3.0)
     
-    # Define thresholds and labels
+    # Define thresholds and labels for categorization
     thresholds = {
         "Purchasing Power Index": [40, 80, 120, 160],
         "Safety Index": [20, 40, 60, 80],
@@ -275,7 +302,7 @@ def compute_quality_of_life(data, city):
     
     labels = ["Very Low", "Low", "Moderate", "High", "Very High"]
     
-    # Print categorized values
+    # Print categorized values for each index
     print(f"Purchasing Power Index: {pp} ({categorize_value(pp, thresholds['Purchasing Power Index'], labels)})")
     print(f"Safety Index: {safety} ({categorize_value(safety, thresholds['Safety Index'], labels)})")
     print(f"Health Care Index: {health} ({categorize_value(health, thresholds['Health Care Index'], labels)})")
