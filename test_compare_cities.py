@@ -8,10 +8,10 @@ import compare_cities
 class TestCompareCities(unittest.TestCase):    
     vacancy = "data/USA DP04 vacancy value cost.csv"
 
-"""
-Testing that chart labels are being placed on the intended axes
-"""    
     def test_chart_labels(self):
+        """
+        Testing that chart labels are being placed on the intended axes
+        """    
         fig, ax1 = plt.subplots()
         ax2 = ax1.twinx()
         ax1.set_xlabel("X Axis Label")
@@ -22,10 +22,11 @@ Testing that chart labels are being placed on the intended axes
         assert ax1.get_ylabel() == "Left Y Axis"
         assert ax2.get_ylabel() == "Right Y Axis"
 
-"""        
-Testing that .csv table is formatted as intended
-"""        
     def test_data_frame(self):  
+        """        
+        Testing that .csv table is formatted as intended
+        """        
+
         df = pd.read_csv("data/test_data.csv")
                
         # Convert numerical columns from object to integer
@@ -37,12 +38,10 @@ Testing that .csv table is formatted as intended
         
         pd.testing.assert_frame_equal(df, expected_df)
         
-"""
-Testing that plot_vacancy() function creates the intented plot of bars and lines, and labels intended axes
-"""  
-    def test_plot_function(self): 
-
-                
+    def test_plot_function(self):
+        """
+        Testing that plot_vacancy() function creates the intented plot of bars and lines, and labels intended axes
+        """                  
         with patch("matplotlib.pyplot.subplots") as mock_subplots:
             mock_fig = MagicMock()
             mock_ax1 = MagicMock()
