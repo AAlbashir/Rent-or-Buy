@@ -1,4 +1,4 @@
-# Project Title: *Rent of Buy Financial Calculator*  
+# Project Title: *Rent or Buy Financial Calculator*  
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.14960038.svg)](https://doi.org/10.5281/zenodo.14960038)  
 
