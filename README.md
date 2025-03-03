@@ -1,6 +1,8 @@
 # Project Title: *Rent of Buy Financial Calculator*  
 
-*This is a repository for the group project of CAS 502*
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.14960038.svg)](https://doi.org/10.5281/zenodo.14960038)  
+
+*This is a repository for the group project of CAS 502 at Arizona State University*
 
 ### Team Members: Jeremy Roy & Abdallah Albashir
 
