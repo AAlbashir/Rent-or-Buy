@@ -1,6 +1,6 @@
 # Project Title: *Rent or Buy Financial Calculator*  
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.14960038.svg)](https://doi.org/10.5281/zenodo.14960038)  
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.14960037.svg)](https://doi.org/10.5281/zenodo.14960037)  
 
 *This is a repository for the group project of CAS 502 at Arizona State University*
 
