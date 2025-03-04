@@ -1,0 +1,13 @@
+cff-version: 1.2.0
+message: "If you use this work, please cite it as follows:"
+authors:
+  - family-names: "Roy"
+    given-names: "Jeremy"
+  - family-names: "Albashir"
+    given-names: "Abdallah"
+title: "AAlbashir/Rent-or-Buy: Version 1.0.0-beta"
+version: "1.0.0-beta"
+doi: "10.5281/zenodo.14968110"
+date-released: "2025-03-04"
+license: "Creative Commons Zero v1.0 Universal"
+repository-code: "https://github.com/AAlbashir/Rent-or-Buy"
