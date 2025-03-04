@@ -58,7 +58,7 @@ def compute_quality_of_life(data, city):
         pollution = float(row["Pollution Index"].values[0])
     except:
         # If any value is missing or cannot be converted to float, print a message and return
-        print("Missing value in data.")
+        print("Missing value in dataset.")
         return
     
     # Compute Quality of Life Index using a weighted formula
